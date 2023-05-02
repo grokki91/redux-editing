@@ -1,0 +1,6 @@
+export const ADD_NOTE = 'ADD_NOTE'
+export const REMOVE_NOTE = 'REMOVE_NOTE'
+export const CHANGE_NOTE_FIELD = 'CHANGE_NOTE_FIELD'
+export const CLEAR = 'CLEAR'
+export const EDIT_NOTE = 'EDIT_NOTE'
+export const EDIT_SWITCH = 'EDIT_SWITCH'
