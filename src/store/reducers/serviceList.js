@@ -1,5 +1,5 @@
 import uuid from "react-uuid";
-import { ADD_NOTE, EDIT_NOTE, REMOVE_NOTE } from "./actions";
+import { ADD_NOTE, REMOVE_NOTE, SAVE_EDIT_NOTE } from "../actions/actions";
 
 const serviceListReducer = (state = [], action) => {
     switch (action.type) {
@@ -9,9 +9,9 @@ const serviceListReducer = (state = [], action) => {
         case REMOVE_NOTE:
             const {id} = action.payload;
             return state.filter(note => note.id !== id);
-        case EDIT_NOTE:
-            console.log(state.find(note => note.id === id));
-            return state.find(note => note.id === id)
+        case SAVE_EDIT_NOTE:
+            const all = state.filter(note => note.id !== action.payload.id);
+            return [...all, action.payload];
         default:
             return state;
     }

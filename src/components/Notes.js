@@ -1,23 +1,26 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editSwitch, removeNote } from '../actions/actionsCreators';
+import { editMode, editNote, editSwitch, removeNote } from '../store/action-creators/actionsCreators';
+import Note from './Note';
 
 const Notes = () => {
     const notes = useSelector(state => state.serviceList)
     const dispatch = useDispatch();
-    const remove = (id) => { dispatch(removeNote(id))}
-    const edit = () => { dispatch(editSwitch(true))}
+    const remove = (id) => {dispatch(removeNote(id))}
+
+    const edit = (id, title, price) => {
+        dispatch(editSwitch(true));
+        dispatch(editMode(true));
+        if (id) {
+            console.log('мы тут');
+            dispatch(editNote(id, title, price))
+        }
+    }
 
     return (
         <ul className='notes'>
-            {notes.map(note => {
-                return(
-                    <li key={note.id}>
-                        {note.title} {note.price}
-                        <button onClick={() => edit()}>&#9998;</button>
-                        <button onClick={() => remove(note.id)}>&times;</button>
-                    </li>
-                );
+            {Array.isArray(notes) && notes.map(note => {
+                return <Note key={note.id} {...note} edit={edit} remove={remove}/>
             })}
         </ul>
     );

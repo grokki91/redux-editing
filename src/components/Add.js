@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote, changeNote, clear } from '../actions/actionsCreators';
 import Form from './Form';
+import { addNote, changeNote, clear } from '../store/action-creators/actionsCreators';
 
 const Add = () => {
-    const note = useSelector(state => state.serviceAdd);
+    const note = useSelector(state => state.serviceInput);
+    const notes = useSelector(state => state.serviceList)
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -14,12 +15,14 @@ const Add = () => {
 
     const handleSumbit = (e) => {
         e.preventDefault();
-        dispatch(addNote(note.title, note.price));
-        dispatch(clear(e.target.name));
+        if (note.title && note.price) {
+            dispatch(addNote(note.title, note.price));
+            dispatch(clear(e.target.name));
+        }
     }
 
     return (
-        <Form {...note} submit={handleSumbit} change={handleChange}/>
+        <Form {...note} notes={notes} submit={handleSumbit} change={handleChange} />
     );
 }
 

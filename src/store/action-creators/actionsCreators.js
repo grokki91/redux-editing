@@ -1,4 +1,4 @@
-import { ADD_NOTE, CHANGE_NOTE_FIELD, CLEAR, EDIT_NOTE, EDIT_SWITCH, REMOVE_NOTE } from "./actions";
+import { ADD_NOTE, CHANGE_NOTE_FIELD, CLEAR, EDIT_MODE, EDIT_NOTE, EDIT_SWITCH, REMOVE_NOTE, SAVE_EDIT_NOTE } from "../actions/actions";
 
 export function addNote(title, price, id) {
     return {type: ADD_NOTE, payload: {title, price, id}};
@@ -20,6 +20,14 @@ export function editNote(id, title, price) {
     return {type: EDIT_NOTE, payload: {id, title, price}};
 }
 
-export function editSwitch(valueEditSwitch) {
-    return {type: EDIT_SWITCH, payload: {valueEditSwitch}};
+export function editSwitch(isEditSwitch) {
+    return {type: EDIT_SWITCH, payload: {isEditSwitch}};
+}
+
+export function editMode(isEditMode) {
+    return {type: EDIT_MODE, payload: {isEditMode}};
+}
+
+export function saveEditNote(id, title, price) {
+    return {type: SAVE_EDIT_NOTE, payload: {id, title, price}};
 }
