@@ -12,17 +12,22 @@ const Notes = () => {
         dispatch(editSwitch(true));
         dispatch(editMode(true));
         if (id) {
-            console.log('мы тут');
             dispatch(editNote(id, title, price))
         }
     }
 
     return (
-        <ul className='notes'>
-            {Array.isArray(notes) && notes.map(note => {
-                return <Note key={note.id} {...note} edit={edit} remove={remove}/>
-            })}
-        </ul>
+            <div className='notes'>
+                <div className='column'>
+                    <span>Title</span>
+                <span>Price</span>
+            </div>
+            <ul>
+                {Array.isArray(notes) && notes.map(note => {
+                    return <Note key={note.id} {...note} edit={edit} remove={remove}/>
+                })}
+            </ul>
+        </div>
     );
 }
 

@@ -1,12 +1,12 @@
 import { combineReducers, createStore } from "redux";
 import serviceListReducer from "./reducers/serviceList";
-import serviceEditSwitchReducer from "./reducers/serviceEditSwitch";
 import serviceInputReducer from "./reducers/serviceInput";
+import serviceSwitchReducer from "./reducers/serviceEditSwitch";
 
 const reducers = combineReducers({
     serviceList: serviceListReducer,
     serviceInput: serviceInputReducer,
-    serviceEditSwitch: serviceEditSwitchReducer
+    serviceSwitch: serviceSwitchReducer
 })
 
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();

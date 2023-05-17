@@ -6,14 +6,14 @@ import Edit from './components/Edit';
 import Filter from './components/Filter';
 
 function App() {
-  const {isEditSwitch} = useSelector(state => state.serviceEditSwitch);
+  const {isEditSwitch, isFilter} = useSelector(state => state.serviceSwitch);
   const notes = useSelector(state => state.serviceList)
 
   return (
     <div className="App">
       {!isEditSwitch ? <Add /> : <Edit />}
-      {notes.length > 1 ? <Filter /> : ''}
-      {notes.length ? <Notes /> : 'Список пуст...'}
+      <Filter />
+      {notes.length && !isFilter ? <Notes /> : ''}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Form = ({children, title, price, submit, change}) => {
-    const {isEditMode} = useSelector(state => state.serviceEditSwitch);
+    const {isEditMode} = useSelector(state => state.serviceSwitch);
     const state = useSelector(state => state.serviceInput);
 
     if (isEditMode) {
@@ -17,8 +17,8 @@ const Form = ({children, title, price, submit, change}) => {
     } else {
         return(
             <form className='form' name='notes' onSubmit={(e) => submit(e)}>
-                <input type='text' name='title' value={title} onChange={(e) => change(e)} />
-                <input type='number' name='price' value={price} onChange={(e) => change(e)} />
+                <input type='text' name='title' value={title} onChange={(e) => change(e)} placeholder='Enter title'/>
+                <input type='number' name='price' value={price} onChange={(e) => change(e)} placeholder='Enter price'/>
                 <button>Save</button>
                 {children}
             </form>
